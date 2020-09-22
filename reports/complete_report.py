@@ -6,7 +6,7 @@ class CompleteReport(SimpleReport):
     def generate(cls, received_list):
         string = super().generate(received_list)
         string += cls.get_occurrence_count_child(received_list)
-        print(string)
+        return string
 
     @classmethod
     def get_occurrence_count_child(cls, received_list):
