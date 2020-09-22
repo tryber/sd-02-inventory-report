@@ -1,31 +1,35 @@
 import datetime
 from itertools import groupby
-import operator
+from operator import itemgetter
 
 
 class SimpleReport:
     @classmethod
     def generate(cls, received_list):
-        list_data = [
+        list_date_fab = [
             datetime.date.fromisoformat(item['data_de_fabricacao'])
             for item in received_list]
-        list_data.sort()
-        print(f'Data de fabricação mais antiga: {list_data[0]}')
-        list_data = [
+        list_date_fab.sort()
+        list_date_val = [
             datetime.date.fromisoformat(item['data_de_validade'])
             for item in received_list]
-        list_data.sort()
-        print(f'Data de validade mais próxima: {list_data[0]}')
-        print(f'Empresa com maior quantidade de produtos estocados: \
-{cls.get_most_quantity_enterprise(received_list)}')
+        list_date_val.sort()
+        enterprise_name = cls.get_most_frequent_enterprise(received_list)
+        return f"""
+Data de fabricação mais antiga: {list_date_fab[0]}
+Data de validade mais próxima: {list_date_val[0]}
+Empresa com maior quantidade de produtos estocados: {enterprise_name}"""
 
     @classmethod
-    def get_most_quantity_enterprise(cls, received_list):
+    def get_most_frequent_enterprise(cls, received_list):
+        return max(
+            cls.get_occurrence_count(received_list),
+            key=itemgetter('ocorrencias'))['empresa']
+
+    @classmethod
+    def get_occurrence_count(cls, received_list):
         enterprises = [item['nome_da_empresa'] for item in received_list]
         enterprises.sort()
-        most_frequent_enterprise = [{'empresa': key,
-                                    'ocorrencias': len(list(group))} for (key,
-                                    group) in groupby(enterprises)]
-        return max(
-            most_frequent_enterprise,
-            key=operator.itemgetter('ocorrencias'))['empresa']
+        return [{'empresa': key,
+                'ocorrencias': len(list(group))} for (key,
+                group) in groupby(enterprises)]
