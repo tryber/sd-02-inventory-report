@@ -1,4 +1,5 @@
 import csv
+import json
 from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
 
@@ -23,6 +24,17 @@ class Inventory():
         return cls.report_type(all_products, type)
 
     @classmethod
+    def json_importer(cls, file, type):
+        all_products = []
+        with open(file) as products:
+            json_products = json.load(products)
+            for prod in json_products:
+                all_products.append(prod)
+        return cls.report_type(all_products, type)
+
+    @classmethod
     def import_data(cls, file, type):
         if file.endswith(".csv"):
             return cls.csv_importer(file, type)
+        if file.endswith(".json"):
+            return cls.json_importer(file, type)
