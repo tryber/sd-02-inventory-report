@@ -1,19 +1,20 @@
+import xml.etree.ElementTree as ET
 import csv
 import json
 from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
 
 
-class Inventory():
+class Inventory:
     @classmethod
-    def report_type(cls, file, type):
-        if type == 'simples':
+    def generate_report(cls, file, request_type):
+        if request_type == "simples":
             return SimpleReport.generate(file)
-        if type == 'completo':
+        if request_type == "completo":
             return CompleteReport.generate(file)
 
     @classmethod
-    def csv_importer(cls, file, type):
+    def csv_importer(cls, file, request_type):
         all_products = []
         with open(file) as products:
             csv_products = csv.DictReader(
@@ -21,20 +22,33 @@ class Inventory():
             )
             for row in csv_products:
                 all_products.append(dict(row))
-        return cls.report_type(all_products, type)
+        return cls.generate_report(all_products, request_type)
 
     @classmethod
-    def json_importer(cls, file, type):
+    def json_importer(cls, file, request_type):
         all_products = []
         with open(file) as products:
             json_products = json.load(products)
             for prod in json_products:
                 all_products.append(prod)
-        return cls.report_type(all_products, type)
+        return cls.generate_report(all_products, request_type)
 
     @classmethod
-    def import_data(cls, file, type):
+    def xml_importer(cls, file, request_type):
+        root = ET.parse(file).getroot()
+        all_products = []
+        for record in root.findall("record"):
+            product = {}
+            for child in record.getchildren():
+                product[child.tag] = child.text.strip()
+            all_products.append(product)
+        return cls.generate_report(all_products, request_type)
+
+    @classmethod
+    def import_data(cls, file, request_type):
         if file.endswith(".csv"):
-            return cls.csv_importer(file, type)
+            return cls.csv_importer(file, request_type)
         if file.endswith(".json"):
-            return cls.json_importer(file, type)
+            return cls.json_importer(file, request_type)
+        if file.endswith(".xml"):
+            return cls.xml_importer(file, request_type)
