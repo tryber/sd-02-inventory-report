@@ -17,12 +17,14 @@ strategy = {
     ".xml": XmlImporter
 }
 
-type_report = sys.argv[2]
+report_type = sys.argv[2]
 path_to_file = sys.argv[1]
 extension = os.path.splitext(path_to_file)[1]
 
-print(
-    Inventory.import_data(
-        type_report, strategy[extension], path_to_file
-    )
-)
+inventory = Inventory(strategy[extension], path_to_file)
+products_report = inventory.generate_report(report_type)
+print(products_report)
+
+iterator = iter(inventory)
+first_item = next(iterator)
+print(first_item)
