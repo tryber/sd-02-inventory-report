@@ -2,7 +2,7 @@ from inventory.inventory import Inventory
 import sys
 
 try:
-    print(Inventory.import_data('data/inventory_20200823.csv', 'simples'))
+    print(Inventory.import_data('data/inventory_20200823.xml', 'completo'))
 
 except KeyError:
     print("Tipo de arquivo inválido", file=sys.stderr)

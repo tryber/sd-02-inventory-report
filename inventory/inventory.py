@@ -2,19 +2,9 @@ from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
 import os.path
 import os
-import sys
 import csv
 import json
-
-def_headers_csv = [
-    "id",
-    "nome_do_produto",
-    "nome_da_empresa",
-    "data_de_fabricacao",
-    "data_de_validade",
-    "numero_de_serie",
-    "instrucoes_de_armazenamento"
-]
+import xml.etree.ElementTree as ET
 
 
 class Inventory:
@@ -29,25 +19,19 @@ class Inventory:
         }
 
         file_parsed = switcher[extension](dict_value)
-        print(file_parsed)
-
-        # if report_type == 'simples':
-        #     return SimpleReport.generate(file_parsed)
-        # elif report_type == 'completo':
-        #     return CompleteReport.generate(file_parsed)
-        # else:
-        #     return "Tipo de relatório inexistente"
+        # print(file_parsed)
+        if report_type == 'simples':
+            return SimpleReport.generate(file_parsed)
+        elif report_type == 'completo':
+            return CompleteReport.generate(file_parsed)
+        else:
+            return "Tipo de relatório inexistente"
 
     @classmethod
     def convert_csv(cls, file_path):
-        dummy_file = 'data/dummy.json'
         with open(file_path, 'r') as file:
-            with open(dummy_file, 'w') as json_file:
-                csv_info = csv.DictReader(file, delimiter=",")
-                json.dump(list(csv_info), json_file)
-        file_parsed = cls.convert_json(dummy_file)
-        os.remove(dummy_file)
-        return file_parsed
+            csv_info = csv.DictReader(file, delimiter=",")
+            return list(csv_info)
 
     @classmethod
     def convert_json(cls, file_path):
@@ -56,4 +40,14 @@ class Inventory:
 
     @classmethod
     def convert_xml(cls, file_path):
-        return(file_path, 'converter XML')
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+        lista = []
+
+        for elem in root.iter('record'):
+            obj = {}
+            for child in elem:
+                obj[child.tag] = child.text
+            lista.append(obj)
+
+        return lista
