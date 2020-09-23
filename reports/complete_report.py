@@ -18,6 +18,5 @@ class CompleteReport(SimpleReport):
     @classmethod
     def generate(cls, dict_file):
         string_simple = super().generate(dict_file)
-        print(string_simple)
         string_complete = cls.generate_complete(dict_file)
-        print(string_complete)
+        return(string_simple + '\n' + string_complete)

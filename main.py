@@ -1,12 +1,9 @@
-from reports.simple_report import SimpleReport
-from reports.complete_report import CompleteReport
-import json
+from inventory.inventory import Inventory
+import sys
 
-# daqui pra baixo tem q ser removido, se quiser deixar automatizado
+try:
+    print(Inventory.import_data('data/inventory_20200823.csv', 'simples'))
 
-
-with open('data/inventory_20200823.json') as json_file:
-    data = json.load(json_file)
-
-print("\nComplete Report\n\n")
-CompleteReport.generate(data)
+except KeyError:
+    print("Tipo de arquivo inválido", file=sys.stderr)
+    sys.exit(1)
