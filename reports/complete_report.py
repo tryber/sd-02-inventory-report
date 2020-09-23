@@ -1,10 +1,18 @@
 from simple_report import SimpleReport
+from collections import Counter
 
 
 class CompleteReport(SimpleReport):
     @classmethod
     def generate(cls, products):
-        return super().generate(products)
+        simple = super().generate(products)
+        data = Counter(prod["nome_da_empresa"] for prod in products)
+        storage_prod = "Produtos Estocados por empresa: \n"
+
+        for key, value in data.items():
+            storage_prod += f"- {key}, Inc.: {value}\n"
+
+        return f"{simple}\n{storage_prod}"
 
 
 products = [
@@ -28,6 +36,24 @@ products = [
     },
     {
         "id": 3,
+        "nome_do_produto": "Uai Sô",
+        "nome_da_empresa": "Folgado Inc.",
+        "data_de_fabricacao": "2021-07-22",
+        "data_de_validade": "2021-01-11",
+        "numero_de_serie": "FR48 2002 7680 97V4 W6FO LEBT 081",
+        "instrucoes_de_armazenamento": "in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus",
+    },
+    {
+        "id": 4,
+        "nome_do_produto": "Uai Sô",
+        "nome_da_empresa": "Folgado Inc.",
+        "data_de_fabricacao": "2021-07-22",
+        "data_de_validade": "2021-01-11",
+        "numero_de_serie": "FR48 2002 7680 97V4 W6FO LEBT 081",
+        "instrucoes_de_armazenamento": "in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus",
+    },
+    {
+        "id": 5,
         "nome_do_produto": "Uai Sô",
         "nome_da_empresa": "Folgado Inc.",
         "data_de_fabricacao": "2021-07-22",
