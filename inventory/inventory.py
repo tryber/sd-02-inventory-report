@@ -1,4 +1,3 @@
-import sys
 import csv
 from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
@@ -13,20 +12,17 @@ class Inventory():
             return CompleteReport.generate(file)
 
     @classmethod
-    def csv_importer(cls, file):
+    def csv_importer(cls, file, type):
         all_products = []
-        with open(file[1]) as products:
+        with open(file) as products:
             csv_products = csv.DictReader(
                 products, delimiter=",", quotechar='"'
             )
             for row in csv_products:
                 all_products.append(dict(row))
-        return cls.report_type(all_products, file[2])
+        return cls.report_type(all_products, type)
 
     @classmethod
-    def import_data(cls, file=sys.argv):
-        if file[1].endswith(".csv"):
-            return cls.csv_importer(file)
-
-
-Inventory.import_data(sys.argv)
+    def import_data(cls, file, type):
+        if file.endswith(".csv"):
+            return cls.csv_importer(file, type)
