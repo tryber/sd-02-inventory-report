@@ -1,6 +1,9 @@
 from inventory.inventory import Inventory
 from importer.xml_importer import XmlImporter
-
+from importer.json_importer import JsonImporter
+from importer.csv_importer import CsvImporter
+import sys
+import os.path
 
 # print(Inventory.import_data('simple', 'data/inventory_20200823.xml'))
 
@@ -8,8 +11,18 @@ from importer.xml_importer import XmlImporter
 
 # XmlImporter.import_data('data/inventory_20200823.xml')
 
+strategy = {
+    ".json": JsonImporter,
+    ".csv": CsvImporter,
+    ".xml": XmlImporter
+}
+
+type_report = sys.argv[2]
+path_to_file = sys.argv[1]
+extension = os.path.splitext(path_to_file)[1]
+
 print(
     Inventory.import_data(
-        "complete", XmlImporter, "data/inventory_20200823.xml"
+        type_report, strategy[extension], path_to_file
     )
 )
