@@ -3,6 +3,7 @@ import csv
 import json
 from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
+from importer.csv_importer import CsvImporter 
 
 
 class Inventory:
@@ -47,7 +48,7 @@ class Inventory:
     @classmethod
     def import_data(cls, file, request_type):
         if file.endswith(".csv"):
-            return cls.csv_importer(file, request_type)
+            return cls.generate_report(CsvImporter.import_data(file), request_type)
         if file.endswith(".json"):
             return cls.json_importer(file, request_type)
         if file.endswith(".xml"):
