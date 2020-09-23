@@ -8,8 +8,5 @@ import json
 with open('data/inventory_20200823.json') as json_file:
     data = json.load(json_file)
 
-print("Simple Report")
-SimpleReport.generate(data)
-
-print("\nComplete Report")
+print("\nComplete Report\n\n")
 CompleteReport.generate(data)
