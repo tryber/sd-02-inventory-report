@@ -2,6 +2,7 @@ from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
 import os.path
 import csv
+import json
 
 
 class Inventory():
@@ -9,7 +10,7 @@ class Inventory():
     def import_data(cls, report_type, arquive):
         extension = os.path.splitext(arquive)[1]
         type_file = {
-                    ".json": 'JSON',
+                    ".json": cls.convert_json_to_Dict(arquive),
                     ".csv": cls.convert_csv_to_Dict(arquive),
                     ".xml": 'xml'
                     }
@@ -26,3 +27,8 @@ class Inventory():
             header, *csvLines = csv.reader(file, delimiter=",")
             return [{item: line[index] for index, item in enumerate(header)}
                     for line in csvLines]
+
+    @classmethod
+    def convert_json_to_Dict(cls, path_to_file):
+        with open(path_to_file) as file:
+            return json.load(file)
