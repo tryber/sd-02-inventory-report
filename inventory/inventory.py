@@ -19,7 +19,6 @@ class Inventory:
         }
 
         file_parsed = switcher[extension](dict_value)
-        # print(file_parsed)
         if report_type == 'simples':
             return SimpleReport.generate(file_parsed)
         elif report_type == 'completo':
