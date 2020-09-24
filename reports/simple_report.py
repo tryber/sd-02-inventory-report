@@ -9,17 +9,21 @@ class SimpleReport:
         production = (sorted(dict_file, key=lambda i: i['data_de_fabricacao']))
         expiration_date = None
         days_diff = math.inf
+
         most_products = Counter(
             industry["nome_da_empresa"] for industry in dict_file
         ).most_common(1)[0][0]
+
         for index, industry in enumerate(dict_file):
             today = datetime.strptime(str(date.today()), '%Y-%m-%d')
             converted_exp = datetime.strptime(
                 industry['data_de_validade'], '%Y-%m-%d')
             date_diff = abs((today - converted_exp).days)
+
             if (date_diff < days_diff):
                 days_diff = date_diff
                 expiration_date = industry['data_de_validade']
+
         return(
             f'Data de fabricação mais antiga:'
             f' {production[0]["data_de_fabricacao"]}\n'
