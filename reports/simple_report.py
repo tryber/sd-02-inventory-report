@@ -15,6 +15,7 @@ class SimpleReport:
             for item in received_list]
         list_date_val.sort()
         enterprise_name = cls.get_most_frequent_enterprise(received_list)
+
         return f"""
 Data de fabricação mais antiga: {list_date_fab[0]}
 Data de validade mais próxima: {list_date_val[0]}
