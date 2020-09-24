@@ -1,12 +1,16 @@
+from collections.abc import Iterable
 from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
+from inventory.inventory_iterator import InventoryIterator
 
 
-class Inventory:
+class Inventory(Iterable):
     def __init__(self, importer):
         self.data = []
         self.importer = importer
 
+    def __iter__(self):
+        return InventoryIterator(self.data)
 
     @classmethod
     def generate_report(cls, file, request_type):
