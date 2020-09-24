@@ -16,5 +16,5 @@ try:
     iterator = iter(inventory)
     first_item = next(iterator)
     print(first_item)
-except ValueError as ex:
-    print(ex, file=sys.stderr)
+except Exception:
+    print('Formato Inválido', file=sys.stderr)
