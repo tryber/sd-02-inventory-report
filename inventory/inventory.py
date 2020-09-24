@@ -5,17 +5,17 @@ from collections.abc import Iterable
 
 
 class Inventory(Iterable):
-    def externa(self, clazz):
+    def __init__(self, clazz, arquive):
+        self.products = clazz.import_data(arquive)
+        self.report_types = {
+            "simple": self.importer_generate(SimpleReport),
+            "complete": self.importer_generate(CompleteReport),
+        }
+
+    def importer_generate(self, clazz):
         def interna():
             return clazz.generate(self.products)
         return interna
-
-    def __init__(self, class_importer, arquive):
-        self.products = class_importer.import_data(arquive)
-        self.report_types = {
-            "simple": self.externa(SimpleReport),
-            "complete": self.externa(CompleteReport),
-        }
 
     def __iter__(self):
         return InventoryIterator(self.products)
