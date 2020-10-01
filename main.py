@@ -3,7 +3,6 @@ from importer.xml_importer import XmlImporter
 from importer.json_importer import JsonImporter
 from importer.csv_importer import CsvImporter
 import sys
-import os.path
 
 # print(Inventory.import_data('simple', 'data/inventory_20200823.xml'))
 
@@ -19,12 +18,12 @@ strategy = {
 
 report_type = sys.argv[2]
 path_to_file = sys.argv[1]
-extension = os.path.splitext(path_to_file)[1]
 
-inventory = Inventory(strategy[extension], path_to_file)
+
+inventory = Inventory(strategy[".csv"], path_to_file)
 products_report = inventory.generate_report(report_type)
 print(products_report)
 
-iterator = iter(inventory)
-first_item = next(iterator)
-print(first_item)
+# iterator = iter(inventory)
+# first_item = next(iterator)
+# print(first_item)
