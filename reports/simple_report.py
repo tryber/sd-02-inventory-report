@@ -24,8 +24,8 @@ class SimpleReport:
         ]
         empresa_que_aparece_mais_vezes = statistics.mode(lista_de_empresas_para_cada_produto)
 
-        print(f"""
+        return f"""
 Data de fabricação mais antiga: {fabricacao_mais_antiga}
 Data de validade mais próxima: {validade_mais_proxima}
 Empresa com maior quantidade de produtos estocados: {empresa_que_aparece_mais_vezes}
-        """)
+        """

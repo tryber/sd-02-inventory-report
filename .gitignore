@@ -1,4 +1,4 @@
 .venv/
-tests/__pycache__/
+*/__pycache__/
 .coverage
 exemplos.py
