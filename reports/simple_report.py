@@ -20,31 +20,28 @@ class SimpleReport:
             if industry["data_de_validade"] > today:
                 expiration_date_test = industry['data_de_validade']
 
-        nearest_shelf_life = min(
-            [
-                prod
-                for prod in dict_file
-                if prod["data_de_validade"]
-                >= datetime.now().strftime("%Y-%m-%d")
-            ],
-            key=itemgetter("data_de_validade"),
-        )["data_de_validade"]
+        # 34-39 needs python3.8 (results in 2024-08-16)
+        list_date_val = [
+            date.fromisoformat(industry["data_de_validade"])
+            for item in dict_file
+            if date.fromisoformat(industry["data_de_validade"]) >= date.today()
+        ]
+        list_date_val.sort()
 
-        for index, industry in enumerate(dict_file):
-            today = datetime.strptime(str(date.today()), '%Y-%m-%d')
-            converted_exp = datetime.strptime(
-                industry['data_de_validade'], '%Y-%m-%d')
-            date_diff = abs((today - converted_exp).days)
+        # 42-50 results in 2022-08-23
+        # for index, industry in enumerate(dict_file):
+        #     today = datetime.strptime(str(date.today()), '%Y-%m-%d')
+        #     converted_exp = datetime.strptime(
+        #         industry['data_de_validade'], '%Y-%m-%d')
+        #     date_diff = abs((today - converted_exp).days)
 
-            if (date_diff < days_diff):
-                days_diff = date_diff
-                expiration_date = industry['data_de_validade']
+        #     if (date_diff < days_diff):
+        #         days_diff = date_diff
+        #         expiration_date = industry['data_de_validade']
 
         return(
             f'Data de fabricação mais antiga:'
             f' {production[0]["data_de_fabricacao"]}\n'
-            f'Data de validade mais próxima: {expiration_date}\n'
-            f'16-21: {expiration_date_test}\n'
-            f'22-30: {nearest_shelf_life}\n'
+            f'Data de validade mais próxima: {list_date_val[0]}\n'
             f'Empresa com maior quantidade de produtos estocados:'
             f' {most_products}')
