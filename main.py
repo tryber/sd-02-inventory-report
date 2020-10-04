@@ -5,6 +5,7 @@ from importer.csv_importer import CsvImporter
 from importer.json_importer import JsonImporter
 
 extension = sys.argv[1].split(".")[1].lower()
+
 try:
     ext_obj = {
         "csv": CsvImporter,
@@ -15,6 +16,5 @@ try:
     print(inventory.import_data())
     iterator = iter(inventory)
     first_item = next(iterator)
-    print(first_item)
 except Exception:
-    print('Formato Inválido', file=sys.stderr)
+    print('Formato Invalido', file=sys.stderr)
