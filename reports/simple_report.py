@@ -5,10 +5,7 @@ import statistics
 class SimpleReport:
     @classmethod
     def generate(cls, produtos):
-        datas_de_fabricacao = [
-            produto["data_de_fabricacao"]
-            for produto in produtos
-        ]
+        datas_de_fabricacao = [produto["data_de_fabricacao"] for produto in produtos]
         fabricacao_mais_antiga = min(datas_de_fabricacao)
 
         datas_de_validade = [
@@ -19,12 +16,12 @@ class SimpleReport:
         validade_mais_proxima = min(datas_de_validade)
 
         lista_de_empresas_para_cada_produto = [
-            produto["nome_da_empresa"]
-            for produto in produtos
+            produto["nome_da_empresa"] for produto in produtos
         ]
-        empresa_que_aparece_mais_vezes = ", ".join(statistics.multimode(lista_de_empresas_para_cada_produto))
+        empresa_que_aparece_mais_vezes = ", ".join(
+            statistics.multimode(lista_de_empresas_para_cada_produto)
+        )
 
-        return f"""
-Data de fabricação mais antiga: {fabricacao_mais_antiga}
+        return f"""Data de fabricação mais antiga: {fabricacao_mais_antiga}
 Data de validade mais próxima: {validade_mais_proxima}
 Empresa com maior quantidade de produtos estocados: {empresa_que_aparece_mais_vezes}"""
