@@ -22,7 +22,7 @@ class SimpleReport:
             produto["nome_da_empresa"]
             for produto in produtos
         ]
-        empresa_que_aparece_mais_vezes = statistics.mode(lista_de_empresas_para_cada_produto)
+        empresa_que_aparece_mais_vezes = ", ".join(statistics.multimode(lista_de_empresas_para_cada_produto))
 
         return f"""
 Data de fabricação mais antiga: {fabricacao_mais_antiga}
