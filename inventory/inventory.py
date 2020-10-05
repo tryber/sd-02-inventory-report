@@ -3,12 +3,11 @@
 # import xml.etree.ElementTree as ET
 from reports.simple_report import SimpleReport
 from reports.complete_report import CompleteReport
-from importer.csv_importer import CsvImporter
-from importer.json_importer import JsonImporter
-from importer.xml_importer import XmlImporter
+from collections.abc import Iterable
+from inventory.inventory_iterator import InventoryIterator
 
 
-class Inventory:
+class Inventory(Iterable):
     # @classmethod
     # def csv_converter(cls, file):
     #     products = []
@@ -46,19 +45,31 @@ class Inventory:
     #         products.append(product)
     #     return products
 
-    @classmethod
-    def import_data(cls, file, report_type):
-        if (file.endswith(".csv")):
-            # products = cls.csv_converter(file)
-            products = CsvImporter.import_data(file)
-        if (file.endswith(".json")):
-            # products = cls.json_converter(file)
-            products = JsonImporter.import_data(file)
-        if (file.endswith(".xml")):
-            # products = cls.xml_converter(file)
-            products = XmlImporter.import_data(file)
+    # @classmethod
+    # def import_data(cls, file, report_type):
+    #     if (file.endswith(".csv")):
+    #         products = cls.csv_converter(file)
+    #     if (file.endswith(".json")):
+    #         products = cls.json_converter(file)
+    #     if (file.endswith(".xml")):
+    #         products = cls.xml_converter(file)
+
+    #     if report_type == "simples":
+    #         return SimpleReport.generate(products)
+    #     if report_type == "completo":
+    #         return CompleteReport.generate(products)
+
+    def __init__(self, importer):
+        self.importer = importer
+        self.products = []
+
+    def __iter__(self):
+        return InventoryIterator(self.products)
+
+    def import_data(self, file, report_type):
+        self.products = self.importer.import_data(file)
 
         if report_type == "simples":
-            return SimpleReport.generate(products)
+            return SimpleReport.generate(self.products)
         if report_type == "completo":
-            return CompleteReport.generate(products)
+            return CompleteReport.generate(self.products)
