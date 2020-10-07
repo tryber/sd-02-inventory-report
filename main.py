@@ -6,20 +6,20 @@ import sys
 import os.path
 
 
-strategy = {
-    ".json": JsonImporter,
-    ".csv": CsvImporter,
-    ".xml": XmlImporter
-}
+# strategy = {
+#     ".json": JsonImporter,
+#     ".csv": CsvImporter,
+#     ".xml": XmlImporter
+# }
 
-report_type = sys.argv[1]
-path_to_file = sys.argv[2]
-extension = os.path.splitext(path_to_file)[1]
+# report_type = sys.argv[1]
+# path_to_file = sys.argv[2]
+# extension = os.path.splitext(path_to_file)[1]
 
 
-inventory = Inventory(strategy[extension], path_to_file)
-products_report = inventory.generate_report(report_type)
-print(products_report)
+# inventory = Inventory(strategy[extension], path_to_file)
+# products_report = inventory.generate_report(report_type)
+# print(products_report)
 
 # iterator = iter(inventory)
 # first_item = next(iterator)
