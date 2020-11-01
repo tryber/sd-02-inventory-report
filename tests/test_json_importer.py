@@ -2,7 +2,6 @@ from importer.json_importer import JsonImporter
 from helpers.constants import (
     EXPECTED_DATA, PATH_INVALID_EXTENSION, PATH_NOT_EXIST_JSON, PATH_VALID_JSON
 )
-
 import pytest
 
 

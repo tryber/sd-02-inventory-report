@@ -14,7 +14,6 @@ class XmlImporter(Importer):
             with open(file_path) as xml_file:
                 xml_reader = xmltodict.parse(xml_file.read())[
                     "dataset"]["record"]
-                print("xml_reader", xml_reader)
                 data = []
                 for xml_row in xml_reader:
                     data.append(xml_row)
