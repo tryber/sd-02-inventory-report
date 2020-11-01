@@ -1,0 +1,134 @@
+## Requisitos obrigatórios:
+
+#### 1 - Deve haver um método `generate` numa classe `SimpleReport` do módulo `simple-report`. Esse método deverá receber dados numa lista contendo estruturas do tipo `dict` e deverá gerar uma saída para a linha de comando.
+
+##### As seguintes verificações serão feitas:
+
+- O método deve receber de parâmetro uma lista de dicionários no seguinte formato:
+
+  ```json
+  [
+    {
+      "id": 1,
+      "nome_do_produto": "CALENDULA OFFICINALIS FLOWERING TOP, GERANIUM MACULATUM ROOT, SODIUM CHLORIDE, THUJA OCCIDENTALIS LEAFY TWIG, ZINC, and ECHINACEA ANGUSTIFOLIA",
+      "nome_da_empresa": "Forces of Nature",
+      "data_de_fabricacao": "2020-07-04",
+      "data_de_validade": "2023-02-09",
+      "numero_de_serie": "FR48 2002 7680 97V4 W6FO LEBT 081",
+      "instrucoes_de_armazenamento": "in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices    phasellus"
+    }
+  ]
+  ```
+
+- O método deverá gerar, na linha de comando, uma saída com o seguinte formato:
+
+  ```bash
+  Data de fabricação mais antiga: YYYY-MM-DD
+  Data de validade mais próxima: YYYY-MM-DD
+  Empresa com maior quantidade de produtos estocados: NOME DA EMPRESA
+  ```
+
+**Dica**: O módulo [datetime](https://docs.python.org/3/library/datetime.html) vai te ajudar.
+
+#### 2 - Deve haver um método `generate` numa classe `CompleteReport` do módulo `complete-report`. Esse método deverá receber dados numa lista contendo estruturas do tipo `dict` e deverá gerar uma saída para a linha de comando.
+
+##### As seguintes verificações serão feitas:
+
+- A classe `CompleteReport` deve herdar o método (`generate`) da classe `SimpleReport`, de modo a especializar seu comportamento.
+
+- O método deve receber de parâmetro uma lista de dicionários no seguinte formato:
+
+  ```json
+  [
+    {
+      "id": 1,
+      "nome_do_produto": "CALENDULA OFFICINALIS FLOWERING TOP, GERANIUM MACULATUM ROOT, SODIUM CHLORIDE, THUJA OCCIDENTALIS LEAFY TWIG, ZINC, and ECHINACEA ANGUSTIFOLIA",
+      "nome_da_empresa": "Forces of Nature",
+      "data_de_fabricacao": "2020-07-04",
+      "data_de_validade": "2023-02-09",
+      "numero_de_serie": "FR48 2002 7680 97V4 W6FO LEBT 081",
+      "instrucoes_de_armazenamento": "in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices    phasellus"
+    }
+  ]
+  ```
+
+- O método deverá gerar, na linha de comando, uma saída com o seguinte formato:
+
+  ```bash
+  Data de fabricação mais antiga: YYYY-MM-DD
+  Data de validade mais próxima: YYYY-MM-DD
+  Empresa com maior quantidade de produtos estocados: NOME DA EMPRESA
+  Produtos estocados por empresa:
+  - Physicians Total Care, Inc.: QUANTIDADE
+  - Newton Laboratories, Inc.: QUANTIDADE
+  - Forces of Nature: QUANTIDADE
+  ```
+
+#### 3 - Deve haver um método `import_data` dentro de uma classe `Inventory` do módulo `inventory`, capaz de ler um arquivo CSV passado como parâmetro de linha de comando
+
+##### As seguintes verificações serão feitas:
+
+- O método, quando receber um arquivo CSV, deve chamar o método de gerar relatório correspondente à entrada passada, `simples` ou `completo`. Ou seja, o método da classe `Inventory` deve chamar o método da classe que vai gerar o relatório.
+
+#### 4 - Deve haver um método `import_data` dentro de uma classe `Inventory` do módulo `inventory`, capaz de ler um arquivo JSON passado como parâmetro de linha de comando
+
+##### As seguintes verificações serão feitas:
+
+- O método, quando receber um arquivo JSON, deve chamar o método de gerar relatório correspondente à entrada passada, `simples` ou `completo`. Ou seja, o método da classe `Inventory` deve chamar o método da classe que vai gerar o relatório.
+
+#### 5 - Deve haver um método `import_data` dentro de uma classe `Inventory` do módulo `inventory`, capaz de ler um arquivo XML passado como parâmetro de linha de comando
+
+##### As seguintes verificações serão feitas:
+
+- O método, quando receber um arquivo XML, deve chamar o método de gerar relatório correspondente à entrada passada, `simples` ou `completo`. Ou seja, o método da classe `Inventory` deve chamar o método da classe que vai gerar o relatório.
+
+#### 6 - Deve haver uma classe abstrata `Importer` no módulo import. Deve haver três classes herdeiras desta: `CsvImporter`, `JsonImporter` e `XmlImporter`, cada uma definida em seu respectivo módulo.
+
+##### As seguintes verificações serão feitas:
+
+- A classe abstrata deve definir a assinatura do método `import_data` a ser implementado por cada classe herdeira. Ela deve receber como parâmetro o nome do arquivo a ser importado.
+
+- O método `import_data` definida por cada classe herdeira deve lançar uma exceção caso a extensão do arquivo passado por parâmetro seja inválida. Por exemplo, quando se passa um CSV para o `JsonImporter`.
+
+- O método deverá ler os dados do arquivo passado e retorná-los estruturados em uma lista de dicionários conforme exemplo abaixo:
+
+  ```json
+  [
+    {
+      "id": 1,
+      "nome_do_produto": "CALENDULA OFFICINALIS FLOWERING TOP, GERANIUM MACULATUM ROOT, SODIUM CHLORIDE, THUJA OCCIDENTALIS LEAFY TWIG, ZINC, and ECHINACEA ANGUSTIFOLIA",
+      "nome_da_empresa": "Forces of Nature",
+      "data_de_fabricacao": "2020-07-04",
+      "data_de_validade": "2023-02-09",
+      "numero_de_serie": "FR48 2002 7680 97V4 W6FO LEBT 081",
+      "instrucoes_de_armazenamento": "in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices    phasellus"
+    }
+  ]
+  ```
+
+- A classe `Inventory` deve utilizar as classes definidas neste requisito para lidar com a lógica de importação, via **composição**.
+
+#### 7 - Deve haver uma classe `InventoryIterator` no módulo `inventory-iterator`, que implementa a interface de um iterator. A classe `Inventory` deve implementar o método `__iter__` associado a essa classe.
+
+##### As seguintes verificações serão feitas:
+
+- As classes `InventoryIterator` e `Inventory` devem implementar corretamente a interface de um iterator, de modo que o código abaixo nos dê o primeiro item da lista de dicionários com os dados importados:
+
+  ```python
+  # ... Acima, um código que instancia e importa um arquivo para a variável `inventory` e importações do módulo Iterator e Iterable
+
+  iterator = iter(inventory)
+  first_item = next(iterator)
+  ```
+
+## Requisitos bônus:
+
+#### 8 - A cobertura de testes do projeto deve ser de no mínimo 90%.
+
+##### As seguintes verificações serão feitas:
+
+- Todos os testes que envolvem mensagens na saída padrão ou de erro, devem ter sua saída redirecionada para Fakes com `StringIO`;
+
+- Todos os testes que envolvem manipulação de arquivos criam Fakes com `StringIO`;
+
+- A cobertura de testes é de no mínimo 90%.
