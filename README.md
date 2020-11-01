@@ -10,6 +10,8 @@ Nota: após terminar o trabalho, para desativar o ambiente virtual digite `deact
 
 Dependências: `python3 -m pip install -r requirements.txt`
 
+export PYTHONPATH="\${PYTHONPATH}:/home/anderson.bolivar/Documents/projects/sd-02-inventory-report"
+
 ## Entregáveis
 
 Para entregar o seu projeto você deverá criar um _Pull Request_ neste repositório. Este _Pull Request_ deverá conter, para aprovação em todos os requisitos, os arquivos `main.py`, `inventory.py`, `inventory_iterator.py`, `importer.py`, `csv_importer.py`, `json_importer.py`, `xml_importer.py`, `simple_report.py`, `complete_report.py`, que conterão seu código `Python` e testes. Atente que os requisitos te orientarão a povoar estes arquivos aos poucos.
