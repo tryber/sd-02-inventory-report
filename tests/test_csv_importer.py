@@ -1,6 +1,6 @@
 from importer.csv_importer import CsvImporter
 from helpers.constants import (
-    EXPECTED_DATA, PATH_INVALID_EXTENSION, PATH_NOT_EXIST, PATH_VALID_CSV
+    EXPECTED_DATA, PATH_INVALID_EXTENSION, PATH_NOT_EXIST_CSV, PATH_VALID_CSV
 )
 
 import pytest
@@ -8,7 +8,7 @@ import pytest
 
 def test_csv_importer_arquivo_nao_existe():
     with pytest.raises(ValueError, match="File not found"):
-        CsvImporter.import_data(PATH_NOT_EXIST)
+        CsvImporter.import_data(PATH_NOT_EXIST_CSV)
 
 
 def test_csv_importer_extensao_invalida():

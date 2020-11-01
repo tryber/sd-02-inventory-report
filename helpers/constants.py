@@ -15,6 +15,10 @@ EXPECTED_DATA = [{'id': '1', 'nome_do_produto': 'Nicotine Polacrilex', 'nome_da_
 
 PATH_INVALID_EXTENSION = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/inventory.txt"
 
-PATH_NOT_EXIST = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/not_exists.csv"
+PATH_NOT_EXIST_CSV = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/not_exists.csv"
+
+PATH_NOT_EXIST_JSON = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/not_exists.json"
 
 PATH_VALID_CSV = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/test_inventory.csv"
+
+PATH_VALID_JSON = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/test_inventory.json"
