@@ -19,6 +19,10 @@ PATH_NOT_EXIST_CSV = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-
 
 PATH_NOT_EXIST_JSON = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/not_exists.json"
 
+PATH_NOT_EXIST_XML = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/not_exists.xml"
+
 PATH_VALID_CSV = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/test_inventory.csv"
 
 PATH_VALID_JSON = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/test_inventory.json"
+
+PATH_VALID_XML = "/home/anderson.bolivar/Documents/projects/sd-02-inventory-report/data/test_inventory.xml"

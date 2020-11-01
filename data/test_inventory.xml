@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<record><id>1</id><nome_do_produto>Nicotine Polacrilex</nome_do_produto><nome_da_empresa>Target Corporation</nome_da_empresa><data_de_fabricacao>2020-02-18</data_de_fabricacao><data_de_validade>2022-09-17</data_de_validade><numero_de_serie>CR25 1551 4467 2549 4402 1</numero_de_serie><instrucoes_de_armazenamento>morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit</instrucoes_de_armazenamento></record>
+<record><id>2</id><nome_do_produto>fentanyl citrate</nome_do_produto><nome_da_empresa>Galena Biopharma, Inc.</nome_da_empresa><data_de_fabricacao>2019-12-06</data_de_fabricacao><data_de_validade>2022-12-25</data_de_validade><numero_de_serie>FR29 5951 7573 74OY XKGX 6CSG D20</numero_de_serie><instrucoes_de_armazenamento>bibendum morbi non quam nec dui luctus rutrum nulla tellus in</instrucoes_de_armazenamento></record>
+</dataset>
