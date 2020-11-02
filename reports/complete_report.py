@@ -1,5 +1,5 @@
-from reports.simple_report import SimpleReport
 from helpers.functions import get_elements
+from reports.simple_report import SimpleReport
 
 
 class CompleteReport(SimpleReport):

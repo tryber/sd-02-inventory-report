@@ -4,6 +4,7 @@ from helpers.constants import (
     ERROR_ARGUMENTS, ERROR_EXTENSION, ERROR_TYPE
 )
 from helpers.functions import get_extension
+from inventory.inventory import Inventory
 import sys
 
 
@@ -17,4 +18,4 @@ if __name__ == '__main__':
     except IndexError:
         raise ValueError(ERROR_ARGUMENTS)
     else:
-        raise NotImplementedError
+        print(Inventory.import_data(file_path, report_type))

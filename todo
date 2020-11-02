@@ -1,26 +1,5 @@
 ## Requisitos obrigatórios:
 
-#### 3 - Deve haver um método `import_data` dentro de uma classe `Inventory` do módulo `inventory`, capaz de ler um arquivo CSV passado como parâmetro de linha de comando
-
-##### As seguintes verificações serão feitas:
-
-- O método, quando receber um arquivo CSV, deve chamar o método de gerar relatório correspondente à entrada passada, `simples` ou `completo`. Ou seja, o método da classe `Inventory` deve chamar o método da classe que vai gerar o relatório.
-
-#### 4 - Deve haver um método `import_data` dentro de uma classe `Inventory` do módulo `inventory`, capaz de ler um arquivo JSON passado como parâmetro de linha de comando
-
-##### As seguintes verificações serão feitas:
-
-- O método, quando receber um arquivo JSON, deve chamar o método de gerar relatório correspondente à entrada passada, `simples` ou `completo`. Ou seja, o método da classe `Inventory` deve chamar o método da classe que vai gerar o relatório.
-
-#### 5 - Deve haver um método `import_data` dentro de uma classe `Inventory` do módulo `inventory`, capaz de ler um arquivo XML passado como parâmetro de linha de comando
-
-##### As seguintes verificações serão feitas:
-
-- O método, quando receber um arquivo XML, deve chamar o método de gerar relatório correspondente à entrada passada, `simples` ou `completo`. Ou seja, o método da classe `Inventory` deve chamar o método da classe que vai gerar o relatório.
-
-#### 6 - Deve haver uma classe abstrata `Importer` no módulo import. Deve haver três classes herdeiras desta: `CsvImporter`, `JsonImporter` e `XmlImporter`, cada uma definida em seu respectivo módulo.
-
-- A classe `Inventory` deve utilizar as classes definidas neste requisito para lidar com a lógica de importação, via **composição**.
 
 #### 7 - Deve haver uma classe `InventoryIterator` no módulo `inventory-iterator`, que implementa a interface de um iterator. A classe `Inventory` deve implementar o método `__iter__` associado a essa classe.
 
