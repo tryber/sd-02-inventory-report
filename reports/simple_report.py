@@ -11,8 +11,4 @@ class SimpleReport:
         oldest_fabrication_date = min(fabrication_dates)
         newest_expiration_date = get_nearest_date(expiration_dates)
         higher_products_company = max(set(companies), key=companies.count)
-        return """
-Data de fabricação mais antiga: {}
-Data de validade mais próxima: {}
-Empresa com maior quantidade de produtos estocados: {}
-""".format(oldest_fabrication_date, newest_expiration_date,  higher_products_company)
+        return """Data de fabricação mais antiga: {}\nData de validade mais próxima: {}\nEmpresa com maior quantidade de produtos estocados: {}""".format(oldest_fabrication_date, newest_expiration_date,  higher_products_company)
