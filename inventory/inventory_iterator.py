@@ -10,18 +10,7 @@ class InventoryIterator(Iterator):
         try:
             current_value = self._iterable[self.position]
         except IndexError:
-            self.position = 1
-            return self._iterable[self.position - 1]
+            raise StopIteration
         else:
             self.position += 1
-            return current_value
-
-    def __previous__(self):
-        try:
-            self.position -= 1
-            current_value = self._iterable[self.position]
-        except IndexError:
-            self.position = len(self._iterable) - 1
-            return self._iterable[self.position]
-        else:
             return current_value

@@ -14,12 +14,13 @@ def main(file_path, report_type):
     extension = get_extension(file_path)
     Check.check_element(extension, AVAILABLE_EXTENSIONS, ERROR_EXTENSION)
     Check.check_element(report_type, AVAILABLE_TYPES, ERROR_TYPE)
-
-    Inventory.import_data(file_path)
+    inventory = Inventory()
+    inventory.import_data(file_path)
     if report_type != "detalhado":
-        print(Inventory.get_report(report_type))
+        print(inventory.get_report(report_type))
     else:
-        Inventory.__iter__(report_type)
+        for iten in inventory:
+            print(iten)
 
 
 if __name__ == '__main__':

@@ -7,17 +7,17 @@ from collections.abc import Iterable
 # import csv
 # import json
 # import xmltodict
+from inventory.inventory_iterator import InventoryIterator
 
 
 class Inventory(Iterable):
     def __init__(self):
         self.data = []
 
-    @classmethod
-    def import_data(cls, file_path):
+    def import_data(self, file_path):
         extension = get_extension(file_path)
         file_data = IMPORTER[extension].import_data(file_path)
-        cls.data = file_data
+        self.data = file_data
         # if (extension == "csv"):
         #     cls.data = cls.import_data_csv(file_path)
         # elif (extension == "json"):
@@ -25,13 +25,12 @@ class Inventory(Iterable):
         # elif (extension == "xml"):
         #     cls.data = cls.import_data_xml(file_path)
 
-    @classmethod
-    def get_report(cls, report_type):
-        return REPORT_TYPE[report_type].generate(cls.data)
+    def get_report(self, report_type):
+        return REPORT_TYPE[report_type].generate(self.data)
 
-    @classmethod
-    def __iter__(cls, report_type):
-        return REPORT_TYPE[report_type].__iter__(cls.data)
+    # o for chama este __iter__
+    def __iter__(self):
+        return InventoryIterator(self.data)
 
     # @classmethod
     # def import_data_csv(cls, file_path):
