@@ -24,16 +24,7 @@ def test_main_on_simple_riport(capsys):
 def test_main_on_details(capsys):
     main(PATH_VALID_CSV, "detalhado")
     out, err = capsys.readouterr()
-    # expect = ""
-    # for data in EXPECTED_DATA:
-    #     expect += "\n".join(data)
     assert out == "\n".join(str(data) for data in EXPECTED_DATA) + "\n"
-    # with patch("inventory.interface_interator.inquirer") as mock_inquirer:
-    #     mock_inquirer.List.return_value = ""
-    #     mock_inquirer.prompt.return_value = {"option": "Exit"}
-    #     main(PATH_VALID_CSV, "detalhado")
-    #     out, err = capsys.readouterr()
-    #     assert out == EXPECTED_DETAILS + "\n"
 
 
 def test_main_on_complete_riport(capsys):
