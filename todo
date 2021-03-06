@@ -1,0 +1,27 @@
+## Requisitos obrigatórios:
+
+
+#### 7 - Deve haver uma classe `InventoryIterator` no módulo `inventory-iterator`, que implementa a interface de um iterator. A classe `Inventory` deve implementar o método `__iter__` associado a essa classe.
+
+##### As seguintes verificações serão feitas:
+
+- As classes `InventoryIterator` e `Inventory` devem implementar corretamente a interface de um iterator, de modo que o código abaixo nos dê o primeiro item da lista de dicionários com os dados importados:
+
+  ```python
+  # ... Acima, um código que instancia e importa um arquivo para a variável `inventory` e importações do módulo Iterator e Iterable
+
+  iterator = iter(inventory)
+  first_item = next(iterator)
+  ```
+
+## Requisitos bônus:
+
+#### 8 - A cobertura de testes do projeto deve ser de no mínimo 90%.
+
+##### As seguintes verificações serão feitas:
+
+- Todos os testes que envolvem mensagens na saída padrão ou de erro, devem ter sua saída redirecionada para Fakes com `StringIO`;
+
+- Todos os testes que envolvem manipulação de arquivos criam Fakes com `StringIO`;
+
+- A cobertura de testes é de no mínimo 90%.
